@@ -1,8 +1,9 @@
+const { nanoid } = require('nanoid');
 const urlModel = require('../models/urlModel');
 
 class ShortenerService {
   encode(originalUrl) {
-    const shortUrl = this._generateShortUrl();
+    const shortUrl = nanoid(8);
     urlModel.addUrl(shortUrl, originalUrl);
     return shortUrl;
   }
@@ -13,10 +14,6 @@ class ShortenerService {
 
   getStats(shortUrl) {
     return urlModel.getStats(shortUrl);
-  }
-
-  _generateShortUrl() {
-    return Math.random().toString(36).substr(2, 8);
   }
 }
 
