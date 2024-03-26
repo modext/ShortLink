@@ -1,6 +1,7 @@
 class URLModel {
     constructor() {
         this.urls = {}; 
+        this.stats = {}; 
     }
 
     addUrl(shortUrl, originalUrl) {
@@ -15,6 +16,9 @@ class URLModel {
         return this.urls[shortUrl];
     }
 
+    getStats(shortUrl) {
+        return this.stats[shortUrl];
+    }
 }
 
 module.exports = new URLModel(); 
