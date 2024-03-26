@@ -21,4 +21,4 @@ class URLModel {
     }
 }
 
-module.exports = new URLModel(); 
+export default new URLModel(); 

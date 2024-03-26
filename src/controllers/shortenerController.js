@@ -1,6 +1,6 @@
-const shortenerService = require('../services/shortenerService');
+import  shortenerService  from '../services/shortenerService.js';
 
-const encodeUrl = (req, res) => {
+export const encodeUrl = (req, res) => {
   const { originalUrl } = req.body;
   if (!originalUrl) {
     return res.status(400).json({ error: 'Original URL is required.' });
@@ -9,7 +9,7 @@ const encodeUrl = (req, res) => {
   res.json({ originalUrl, shortUrl });
 };
 
-const decodeUrl = (req, res) => {
+export const decodeUrl = (req, res) => {
   const { shortUrl } = req.body;
   if (!shortUrl) {
     return res.status(400).json({ error: 'Short URL is required.' });
@@ -22,7 +22,7 @@ const decodeUrl = (req, res) => {
   }
 };
 
-const statistics = (req, res) => {
+export const statistics = (req, res) => {
   const { urlPath } = req.params;
   const stats = shortenerService.getStats(urlPath);
   if (stats) {
@@ -32,8 +32,4 @@ const statistics = (req, res) => {
   }
 };
 
-module.exports = {
-  encodeUrl,
-  decodeUrl,
-  statistics
-};
+

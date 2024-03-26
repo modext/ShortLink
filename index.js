@@ -1,6 +1,6 @@
-const express = require('express');
+import  express  from 'express';
+import { encodeUrl, decodeUrl, statistics } from './src/controllers/shortenerController.js';
 const app = express();
-const shortenerController = require('./src/controllers/shortenerController');
 
 
 
@@ -8,9 +8,9 @@ const port = process.env.PORT || 8000;
 
 app.use(express.json());
 
-app.post('/encode', shortenerController.encode);
-app.post('/decode', shortenerController.decode);
-app.get('/statistic/:urlPath', shortenerController.statistic);
+app.post('/encode', encodeUrl);
+app.post('/decode', decodeUrl);
+app.get('/statistic/:urlPath', statistics);
 
 
 app.get('/', (req, res) => {

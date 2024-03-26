@@ -1,5 +1,5 @@
-const { nanoid } = require('nanoid');
-const urlModel = require('../models/urlModel');
+import { nanoid } from 'nanoid';
+import urlModel from '../models/urlModel.js';
 
 class ShortenerService {
   encode(originalUrl) {
@@ -17,4 +17,4 @@ class ShortenerService {
   }
 }
 
-module.exports = new ShortenerService();
+export default new ShortenerService();
