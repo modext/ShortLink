@@ -1,17 +1,12 @@
 import  express  from 'express';
-import { encodeUrl, decodeUrl, statistics } from './src/controllers/shortenerController.js';
+import routes from '../ShortLink/src/routes/routes.js'
+
 const app = express();
-
-
-
 const port = process.env.PORT || 8000;
 
 app.use(express.json());
 
-app.post('/encode', encodeUrl);
-app.post('/decode', decodeUrl);
-app.get('/statistic/:urlPath', statistics);
-
+app.use('/', routes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to ShortLink URL Shortening Service');

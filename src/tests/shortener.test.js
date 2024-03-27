@@ -18,6 +18,20 @@ describe('ShortLink URL Shortening Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('shortUrl');
   });
+  
+  it('should decode a short URL and return the original URL', async () => {
+    const encodeResponse = await request(app)
+      .post('/encode')
+      .send({ originalUrl: 'https://example.com' });
+
+    const { shortUrl } = encodeResponse.body;
+    const decodeResponse = await request(app)
+      .post('/decode')
+      .send({ shortUrl });
+
+    expect(decodeResponse.statusCode).toBe(200);
+    expect(decodeResponse.body.originalUrl).toBe('https://example.com');
+  });
 
 });
 
