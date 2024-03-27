@@ -1,6 +1,6 @@
 import request from 'supertest';
 import express from 'express';
-
+import router from '../routes/shortener.js'; 
 
 const app = express();
 app.use(express.json());
@@ -8,7 +8,8 @@ app.use(router);
 
 
 describe('ShortLink URL Shortening Service', () => {
-    let shortUrlPath
+    let shortUrlPath;
+
     it('should encode a URL and return a short URL', async () => {
         const response = await request(app)
             .post('/encode')
@@ -16,7 +17,7 @@ describe('ShortLink URL Shortening Service', () => {
 
         expect(response.statusCode).toBe(200);
         expect(response.body).toHaveProperty('shortUrl');
-        const urlRegex = /^http:\/\/short\.est\/([A-Za-z0-9_-]{8})$/;
+        const urlRegex = /^http:\/\/short\.url\/([A-Za-z0-9_-]{8})$/;
         expect(response.body.shortUrl).toMatch(urlRegex);
         const match = response.body.shortUrl.match(urlRegex);
         shortUrlPath = match[1];

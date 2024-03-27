@@ -4,21 +4,21 @@ class URLModel {
         this.stats = {}; 
     }
 
-    addUrl(shortUrl, originalUrl) {
-        this.urls[shortUrl] = originalUrl;
-        this.stats[shortUrl] = { accesses: 0, createdAt: new Date() };
+    addUrl(shortPath, originalUrl) {
+        this.urls[shortPath] = originalUrl;
+        this.stats[shortPath] = { accesses: 0, createdAt: new Date() };
     }
 
-    getUrl(shortUrl) {
-        if (this.stats[shortUrl]) {
-            this.stats[shortUrl].accesses++;
+    getUrl(shortPath) {
+        if (this.urls[shortPath]) {
+            this.stats[shortPath].accesses++;
+            return this.urls[shortPath];
         }
-        return this.urls[shortUrl];
+        return null; 
     }
 
-    getStats(shortUrl) {
-        return this.stats[shortUrl];
+    getStats(shortPath) {
+        return this.stats[shortPath] || null; 
     }
 }
-
 export default new URLModel(); 

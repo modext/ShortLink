@@ -3,17 +3,18 @@ import urlModel from '../models/urlModel.js';
 
 class ShortenerService {
   encode(originalUrl) {
-    const shortUrl = nanoid(8);
-    urlModel.addUrl(shortUrl, originalUrl);
+    const shortPath =  nanoid(8)
+    const shortUrl = `http://short.url/${shortPath}`;
+    urlModel.addUrl(shortPath, originalUrl); 
     return shortUrl;
   }
 
-  decode(shortUrl) {
-    return urlModel.getUrl(shortUrl);
+  decode(shortPath) {
+    return urlModel.getUrl(shortPath);
   }
 
-  getStats(shortUrl) {
-    return urlModel.getStats(shortUrl);
+  getStats(shortPath) {
+    return urlModel.getStats(shortPath);
   }
 }
 

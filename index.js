@@ -1,5 +1,5 @@
 import  express  from 'express';
-import routes from '../ShortLink/src/routes/routes.js'
+import routes from './src/routes/shortener.js'
 
 const app = express();
 const port = process.env.PORT || 8000;

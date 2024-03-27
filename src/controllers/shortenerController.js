@@ -10,17 +10,24 @@ export const encodeUrl = (req, res) => {
 };
 
 export const decodeUrl = (req, res) => {
-  const { shortUrl } = req.body;
-  if (!shortUrl) {
-    return res.status(400).json({ error: 'Short URL is required.' });
-  }
-  const originalUrl = shortenerService.decode(shortUrl);
-  if (originalUrl) {
-    res.json({ shortUrl, originalUrl });
-  } else {
-    res.status(404).json({ error: 'URL not found.' });
-  }
-};
+    const { shortUrl } = req.body;
+    if (!shortUrl) {
+      return res.status(400).json({ error: 'Short URL is required.' });
+    }
+    const shortPathRegex = /^http:\/\/short\.url\/([A-Za-z0-9_-]+)$/;
+    const match = shortUrl.match(shortPathRegex);
+    if (!match) {
+      return res.status(400).json({ error: 'Invalid short URL format.' });
+    }
+    const shortPath = match[1]; 
+    const originalUrl = shortenerService.decode(shortPath);
+    if (originalUrl) {
+      res.json({ shortUrl, originalUrl });
+    } else {
+      res.status(404).json({ error: 'URL not found.' });
+    }
+  };
+  
 
 export const statistics = (req, res) => {
   const { urlPath } = req.params;
