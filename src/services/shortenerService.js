@@ -5,7 +5,7 @@ class ShortenerService {
   encode(originalUrl) {
     const shortPath =  nanoid(8)
     const shortUrl = `http://short.url/${shortPath}`;
-    urlModel.addUrl(shortPath, originalUrl); 
+    urlModel.addUrl(shortPath, originalUrl, shortUrl); 
     return shortUrl;
   }
 
