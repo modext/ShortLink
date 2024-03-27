@@ -40,18 +40,18 @@ npm test
 This command will execute the test suite and output the test results, indicating whether the tests passed or failed.
 
 ## Using the API
-# Encode a URL
+#### Encode a URL
 To shorten a URL, send a POST request to /encode with the original URL in the request body:
 
 ```sh
 curl -X POST -H "Content-Type: application/json" -d '{"originalUrl": "http://example.com"}' http://localhost:8000/encode
 ```
-# Decode a URL
+#### Decode a URL
 To decode a shortened URL and retrieve the original URL, send a POST request to /decode with the short URL in the request body:
 ```sh
 curl -X POST -H "Content-Type: application/json" -d '{"shortUrl": "http://short.url/abcd1234"}' http://localhost:8000/decode
 ```
-# Retrieve Statistics
+#### Retrieve Statistics
 To get the statistics for a shortened URL, send a GET request to /statistic/{shortPath}:
 
 ```sh
