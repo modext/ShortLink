@@ -6,12 +6,14 @@ import cors from 'cors';
 const app = express();
 const port = process.env.PORT || 8000;
 
+app.use(cors({
+  origin: 'http://localhost:3001' // Adjust this to match your frontend's origin
+}));
+
 app.use(express.json());
 
 app.use('/', routes);
-app.use(cors({
-  origin: 'http://localhost:3000' // Adjust this to match your frontend's origin
-}));
+
 app.get('/', (req, res) => {
   res.send('Welcome to ShortLink URL Shortening Service');
 });

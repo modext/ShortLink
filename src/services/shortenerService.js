@@ -16,6 +16,9 @@ class ShortenerService {
   getStats(shortPath) {
     return urlModel.getStats(shortPath);
   }
+  getallUrls() {
+    return urlModel.getAllUrls();
+  }
 }
 
 export default new ShortenerService();

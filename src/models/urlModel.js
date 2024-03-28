@@ -13,6 +13,7 @@ class URLModel {
             shortenedUrl: shortUrl
         };
         console.log('URL added:', this.urls); 
+
     }
 
     getUrl(shortPath) {
@@ -27,5 +28,13 @@ class URLModel {
     getStats(shortPath) {
         return this.stats[shortPath] || null;
     }
+
+    getAllUrls() {
+        return Object.keys(this.stats).map((shortPath) => ({
+          shortPath: shortPath,
+          originalUrl: this.urls[shortPath],
+          stats: this.stats[shortPath],
+        }));
+      }
 }
 export default new URLModel(); 
