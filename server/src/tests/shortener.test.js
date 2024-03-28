@@ -76,5 +76,25 @@ describe('ShortLink URL Shortening Service', () => {
         expect(response.statusCode).toBe(404);
     });
 
+    it('should correctly handle URLs without schemes', async () => {
+    const responseWithoutScheme = await request(app)
+        .post('/encode')
+        .send({ originalUrl: 'example.com' }); 
+
+    expect(responseWithoutScheme.statusCode).toBe(200);
+    expect(responseWithoutScheme.body).toHaveProperty('shortUrl');
+
+    const matchWithoutScheme = responseWithoutScheme.body.shortUrl.match(urlRegex);
+    expect(matchWithoutScheme).not.toBeNull();
+
+    const shortPathWithoutScheme = matchWithoutScheme[1];
+    const redirectResponse = await request(app)
+        .get(`/${shortPathWithoutScheme}`);
+
+    expect(redirectResponse.statusCode).toBe(302);
+    expect(redirectResponse.headers.location).toBe('http://example.com');
+});
+
+
 });
 
