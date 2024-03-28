@@ -21,11 +21,31 @@ git clone https://github.com/modext/ShortLink.git
 cd ShortLink
 
 ```
+### Starting the Frontend Service
+Then, for the frontend:
+```sh
+cd client/shortlink
+```
 Then, install the dependencies using npm:
 ```sh
 npm install
 ```
-### Starting the Service
+
+To start the service, run the following command in the root directory of the project:
+```sh
+npm run dev
+```
+This will launch the ShortLink Frontend service on http://localhost:3000. 
+### Starting the Backend Service
+```sh
+cd server
+```
+
+Then, install the dependencies using npm:
+```sh
+npm install
+```
+### Starting the Backend Service
 To start the service, run the following command in the root directory of the project:
 ```sh
 npm start
@@ -57,7 +77,10 @@ To get the statistics for a shortened URL, send a GET request to /statistic/{sho
 ```sh
 curl http://localhost:8000/statistic/abcd1234
 ```
-* Replace abcd1234 with the path of your short URL.
+* Replace abcd1234 with the path of your short URL.*
+  
+## Test from Frontend
+The App is the ready to be tested from the frontend. Navigate and test.
 
 ## Author
 Orji Modestus
