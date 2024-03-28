@@ -1,3 +1,5 @@
+import { ensureFullUrl } from "../services/shortenerService.js";
+
 class URLModel {
     constructor() {
         this.urls = {};
@@ -5,19 +7,18 @@ class URLModel {
     }
 
     addUrl(shortPath, originalUrl,shortUrl) {
-        this.urls[shortPath] = originalUrl;
+        const fullOriginalUrl = ensureFullUrl(originalUrl);
+        this.urls[shortPath] = fullOriginalUrl;
         this.stats[shortPath] = {
             accesses: 0,
             createdAt: new Date(),
             originalUrl: originalUrl,
             shortenedUrl: shortUrl
         };
-        console.log('URL added:', this.urls); 
 
     }
 
     getUrl(shortPath) {
-        console.log('Requested URL:', shortPath, 'Available URLs:', this.urls); // Logging available URLs
         if (this.urls[shortPath]) {
             this.stats[shortPath].accesses++;
             return this.urls[shortPath];

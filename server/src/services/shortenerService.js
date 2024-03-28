@@ -1,11 +1,21 @@
 import { nanoid } from 'nanoid';
 import urlModel from '../models/urlModel.js';
 
+
+export function ensureFullUrl(url) {
+  if (!/^https?:\/\//i.test(url)) {
+    return `http://${url}`;
+  }
+  return url;
+}
+
 class ShortenerService {
+  
   encode(originalUrl) {
-    const shortPath =  nanoid(8)
+    const shortPath = nanoid(8);
+    const fullOriginalUrl = ensureFullUrl(originalUrl);
     const shortUrl = `http://short.url/${shortPath}`;
-    urlModel.addUrl(shortPath, originalUrl, shortUrl); 
+    urlModel.addUrl(shortPath, fullOriginalUrl, shortUrl); 
     return shortUrl;
   }
 
